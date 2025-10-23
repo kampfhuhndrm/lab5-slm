@@ -1,2 +1,2 @@
 # lab5-slm
-first llm model lab5
+first slm model lab5
