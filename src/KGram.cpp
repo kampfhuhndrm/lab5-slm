@@ -35,4 +35,43 @@ KGram::KGram(const string& filename, int k)
 
 }
 
-float KGram
+float KGram::frequency(const string& w)const{
+    //Division by zero
+    if (total_count_ == 0) {
+        return 0.0f;
+    }
+
+    auto it = freq_.find(w);
+
+    // 3. Prüfen, ob das k-Gramm überhaupt gefunden wurde
+    if (it == freq_.end()) {
+        return 0.0f;
+    }
+
+    return static_cast<float>(it->second) / static_cast<float>(total_count_);
+}
+
+float KGram::P(char c, const std::string& w) const 
+{
+    // Find n(w)
+    auto it_w = freq_.find(w);
+    if (it_w == freq_.end()) {
+        return 0; 
+    }
+    int n_w = it_w->second; // n(w)
+
+    // Find n(w, c)
+    auto it_trans = transitions_.find(w);
+    if (it_trans == transitions_.end()) {
+        return 0; 
+    }
+    
+    auto it_char = it_trans->second.find(c);
+    if (it_char == it_trans->second.end()) {
+        return 0; 
+    }
+    int n_wc = it_char->second;
+    
+   // P(c|w) = n(w,c) / n(w) 
+    return static_cast<float>(n_wc) / n_w;
+}

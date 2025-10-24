@@ -1,8 +1,6 @@
-#pragma once // Guter Stil, um doppelte Einbindung zu verhindern
-
 #include <string>
-#include <random> // Wichtig für das Sampling [cite: 45]
-#include "KGram.h" // Du hattest das schon korrekt
+#include <random> 
+#include "KGram.h" 
 
 class Generator
 {
